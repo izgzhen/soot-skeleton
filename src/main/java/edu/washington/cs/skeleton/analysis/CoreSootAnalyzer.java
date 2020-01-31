@@ -15,6 +15,7 @@ public class CoreSootAnalyzer {
     private Set<String> reachingResult;
     private Map<String, Set<String>> callGraph;
 
+    // FIXME: why unpack the options?
     public CoreSootAnalyzer(boolean callGraphOrReachingDef, String classpath, String mainClass, boolean wholeProgram, boolean setApp,
                             boolean allowPhantomRef, boolean CGSafeNewInstance, boolean CGChaEnabled,
                             boolean CGSparkEnabled, boolean CGSparkVerbose, boolean CGSparkOnFlyCg,

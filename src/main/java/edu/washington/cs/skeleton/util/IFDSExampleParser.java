@@ -10,6 +10,7 @@ public class IFDSExampleParser {
         return statement;
     }
 
+    // NOTE: SnakeYAML needs it
     public void setMethod(String method) {
         this.method = method;
     }
