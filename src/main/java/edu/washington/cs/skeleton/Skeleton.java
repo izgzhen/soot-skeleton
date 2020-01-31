@@ -82,6 +82,7 @@ public class Skeleton {
             options.add(skeletonSootOptions);
         }
         boolean found;
+        // FIXME: We need to combine these two routines and make algorithm part of the search space
         if (callGraphOrReachingDef) {
             found = searchForCGValidConfig(options, 0, targetClassName, callGraphOrReachingDef);
         } else {
@@ -160,6 +161,8 @@ public class Skeleton {
         System.out.println("Output File Path Not Found");
     }
 
+    private int coreSootAnalyzerHits = 0;
+
     /**
      * Does the actual recursive searching
      * @param options
@@ -173,6 +176,8 @@ public class Skeleton {
         if (index == options.size()) {
             // try false first, then true
             try {
+                coreSootAnalyzerHits += 1;
+                System.out.println("Hit CoreSootAnalyzer " + coreSootAnalyzerHits + "/" + Math.pow(2, options.size()));
                 CoreSootAnalyzer coreSootAnalyzer = new CoreSootAnalyzer(callGraphOrReachingDef, this.pathToTargetDirectory, targetClassName, SkeletonSootOptions.WHOLE_PROGRAM.getValue(),
                         SkeletonSootOptions.SET_APP.getValue(), SkeletonSootOptions.ALLOW_PHANTOM_REF.getValue(), SkeletonSootOptions.CG_Safe_New_Instance.getValue(),
                         SkeletonSootOptions.CG_Cha_Enabled.getValue(), SkeletonSootOptions.CG_Spark_Enabled.getValue(), SkeletonSootOptions.CG_Spark_Verbose.getValue(),
